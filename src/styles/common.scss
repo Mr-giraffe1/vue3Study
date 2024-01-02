@@ -1,0 +1,401 @@
+a {
+  text-decoration: none;
+}
+p {
+  margin: 0;
+}
+i {
+  font-style: normal;
+}
+ul {
+  list-style: none;
+}
+h4,body,ul, h3 {
+  margin: 0;
+  padding: 0!important;
+}
+
+
+/*弹性布局*/
+.flex {
+  display: flex;
+
+  &-1 {
+    flex: 1;
+  }
+
+  &-dir {
+    flex-direction: column;
+
+    &-r {
+      flex-direction: row;
+    }
+  }
+
+  &-js {
+    &-c {
+      justify-content: center;
+    }
+
+    &-a {
+      justify-content: space-around;
+    }
+
+    &-b {
+      justify-content: space-between;
+    }
+
+    &-e {
+      justify-content: space-evenly;
+    }
+
+    &-ed {
+      justify-content: end;
+    }
+  }
+
+  &-ai {
+    &-s {
+      align-items: start;
+    }
+    &-c {
+      align-items: center;
+    }
+  }
+  &-wrap {
+    flex-wrap: wrap;
+  }
+}
+
+/*定位布局*/
+.position {
+  &-absolute {
+    position: absolute;
+  }
+  &-relative {
+    position: relative;
+  }
+  &-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &-y-center {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &-x-center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/*字体样式*/
+.font {
+  &-hover {
+    transition: color .2s;
+    &:hover {
+      color: $color-blue;
+    }
+  }
+  &-size {
+    &-s {
+      font-size: $font-size-s;
+    }
+    &-sm {
+      font-size: $font-size-sm;
+    }
+    &-m {
+      font-size: $font-size-m;
+    }
+    &-l {
+      font-size: $font-size-l;
+    }
+    &-xl {
+      font-size: $font-size-xl;
+    }
+  }
+  &-color {
+    &-blue {
+      color: $color-blue;
+    }
+    &-white {
+      color: $color-white;
+    }
+    &-gray {
+      color: $color-gray;
+    }
+    &-lightGray {
+      color: $color-lightGray;
+    }
+    &-red {
+      color: $color-red;
+    }
+    &-main {
+     color: $color-main;
+    }
+  }
+  &-width {
+    &-bold {
+      font-weight: bold;
+    }
+  }
+  &-center {
+    text-align: center;
+  }
+  &-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/*元素宽高*/
+.screen {
+  &-height {
+    height: 100%;
+    &-v {
+      height: 100vh;
+    }
+  }
+
+  &-width {
+    width: 100%;
+    &-v {
+      width: 100vw;
+    }
+  }
+
+}
+/*鼠标相关*/
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+}
+
+/*背景相关*/
+.bg {
+  &-color {
+    &-white {
+      background-color: $color-white;
+    }
+    &-tint {
+      background-color: $color-tintGray;
+    }
+  }
+}
+
+/*边框相关*/
+.border {
+  &-radius {
+    &-all {
+      &-s {
+        border-radius: $round-size-s;
+      }
+      &-sm {
+        border-radius: $round-size-sm;
+      }
+      &-m {
+        border-radius: $round-size-m;
+      }
+      &-l {
+        border-radius: $round-size-l;
+      }
+      &-xl {
+        border-radius: $round-size-xl;
+      }
+    }
+  }
+}
+
+/*margin间距值*/
+.margin {
+  &-top {
+    &-s {
+      margin-top: $space-size-s;
+    }
+    &-sm {
+      margin-top: $space-size-sm ;
+    }
+    &-m {
+      margin-top: $space-size-m;
+    }
+    &-l {
+      margin-top: $space-size-l;
+    }
+    &-xl {
+      margin-top: $space-size-xl;
+    }
+    &-xxl {
+      margin-top: $space-size-xxl;
+    }
+  }
+  &-bottom {
+    &-s {
+      margin-bottom: $space-size-s;
+    }
+    &-sm {
+      margin-bottom: $space-size-sm ;
+    }
+    &-m {
+      margin-bottom: $space-size-m;
+    }
+    &-l {
+      margin-bottom: $space-size-l;
+    }
+    &-xl {
+      margin-bottom: $space-size-xl;
+    }
+    &-xxl {
+      margin-bottom: $space-size-xxl;
+    }
+  }
+  &-left {
+    &-s {
+      margin-left: $space-size-s;
+    }
+    &-sm {
+      margin-left: $space-size-sm;
+    }
+    &-m {
+      margin-left: $space-size-m;
+    }
+    &-l {
+      margin-left: $space-size-l;
+    }
+    &-xl {
+      margin-left: $space-size-xl;
+    }
+    &-xxl {
+      margin-left: $space-size-xxl;
+    }
+  }
+  &-right {
+    &-s {
+      margin-right: $space-size-s;
+    }
+    &-sm {
+      margin-right: $space-size-sm;
+    }
+    &-m {
+      margin-right: $space-size-m;
+    }
+    &-l {
+      margin-right: $space-size-l;
+    }
+    &-xl {
+      margin-right: $space-size-xl;
+    }
+    &-xxl {
+      margin-right: $space-size-xxl;
+    }
+  }
+}
+
+/*padding间距值*/
+.padding {
+  &-all {
+    &-s {
+      padding: $space-size-s;
+    }
+    &-sm {
+      padding: $space-size-sm;
+    }
+    &-m {
+      padding: $space-size-m;
+    }
+  }
+  &-top {
+    &-s {
+      padding-top: $space-size-s;
+    }
+    &-sm {
+      padding-top: $space-size-sm ;
+    }
+    &-m {
+      padding-top: $space-size-m;
+    }
+    &-l {
+      padding-top: $space-size-l;
+    }
+    &-xl {
+      padding-top: $space-size-xl;
+    }
+    &-xxl {
+      padding-top: $space-size-xxl;
+    }
+  }
+  &-right {
+    &-s {
+      padding-right: $space-size-s;
+    }
+    &-sm {
+      padding-right: $space-size-sm;
+    }
+    &-m {
+      padding-right: $space-size-m;
+    }
+    &-l {
+      padding-right: $space-size-l;
+    }
+    &-xl {
+      padding-right: $space-size-xl;
+    }
+  }
+  &-left {
+    &-s {
+      padding-left: $space-size-s;
+    }
+    &-sm {
+      padding-left: $space-size-sm;
+    }
+    &-m {
+      padding-left: $space-size-m;
+    }
+    &-l {
+      padding-left: $space-size-l;
+    }
+    &-xl {
+      padding-left: $space-size-xl;
+    }
+  }
+  &-bottom {
+    &-s {
+      padding-bottom: $space-size-s;
+    }
+    &-sm {
+      padding-bottom: $space-size-sm ;
+    }
+    &-m {
+      padding-bottom: $space-size-m;
+    }
+    &-l {
+      padding-bottom: $space-size-l;
+    }
+    &-xl {
+      padding-bottom: $space-size-xl;
+    }
+    &-xxl {
+      padding-bottom: $space-size-xxl;
+    }
+  }
+}
+
+/*背景相关*/
+.bg {
+  &-color {
+    &-white {
+      background: white;
+    }
+  }
+}
+
+/*页面溢出处理*/
+.overflow {
+  &-hidden {
+    overflow: hidden;
+  }
+}
+
+
