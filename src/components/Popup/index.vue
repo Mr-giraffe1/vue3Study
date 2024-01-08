@@ -7,7 +7,8 @@
       <div class="flex">
         <div class="common cover margin-right-l flex flex-js-c">
           <!-- <img src="@/assets/images/01.png"> -->
-          <img :src="itemData.imageUrl[0]">
+          <img :src="'https://8.137.39.49:444/jufeng-admin' + itemData.imageUrl">
+
         </div>
         <div class="common info">
           <h4 class="font-size-m">{{ itemData.title }}</h4>
@@ -59,12 +60,14 @@
   const closeModel = () => {
     emit('update:show', false);
   }
-  
+
   const setData = (index: number, itemIndex: number) => {
     nowIndex.value = index;
     nowItemIndex.value = itemIndex;
     itemData.value = getApp().System.Case.getItemMessage(nowIndex.value, nowItemIndex.value);
     dataList.value = getApp().System.Case.getItemImages(index);
+    console.log( "itemData.value*******",itemData.value)
+    console.log( "dataList.value",dataList.value)
   }
   function nextItem(){
     nowItemIndex.value=(nowItemIndex.value+1)%8;
@@ -78,7 +81,7 @@
   defineExpose({
     setData
   })
-  
+
 </script>
 
 <style lang="scss" scoped>

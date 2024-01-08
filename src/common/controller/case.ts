@@ -4,7 +4,7 @@ export class Case {
         "CUSTOMIZEDPRODUCT_ALLLIST" : "/tp/customizedProduct/allList"
     }
     constructor() {
-        
+
     }
 
     private protectMessage=[];
@@ -19,15 +19,15 @@ export class Case {
         const res = await request({
             url: this.RequestApi.CUSTOMIZEDPRODUCT_ALLLIST,
             method: 'get',
-            
+
           })
-        for (let i = 0; i < res.data.total ; i++) {
+        console.log("res",res);
+        for (let i = 0; i < res.data.rows.total ; i++) {
             for(let j = 0; j < res.data.rows[i].productList.length; j++){
                 res.data.rows[i].productList[j].imageUrl=formatImg(res.data.rows[i].productList[j].imageUrl)
             }
         }
         this.protectMessage=res.data.rows;
-        // console.log(this.protectMessage)
         return res.data.rows;
 
         function formatImg(str: string) {
@@ -39,9 +39,11 @@ export class Case {
 
      public getItemImages(index:number){
          this.ItemImages=[];
-         for (let i = 0; i < this.protectMessage.length; i++) {
-             this.ItemImages.push(this.protectMessage[index].productList[i].imageUrl[0]);
+         console.log("protectMessage",this.protectMessage)
+         for (let i = 0; i < this.protectMessage[index].productList.length; i++) {
+             this.ItemImages.push("https://8.137.39.49:444/jufeng-admin"+this.protectMessage[index].productList[i].imageUrl);
          }
+         console.log("this.ItemImages",this.ItemImages)
          return this.ItemImages;
      }
 
