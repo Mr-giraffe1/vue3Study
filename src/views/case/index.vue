@@ -16,24 +16,21 @@
           </div>
         </div>
         <div class="nuem-images">
-          <div class="image-item" v-for="(image, index) in images.banner">
-            <img :src="image.imageUrl[0]" alt="" width="278" height="285" @click="open(index)">
+          <div class="image-item" v-for="(imageurl, index) in images.banner">
+            <img :src="imageurl" alt="" width="278" height="285" @click="open(index)">
           </div>
         </div>
       </div>
 
     </div>
-    <popup v-model:show="toggleChange" prop="" :data="itemMessage" ref="popup"></popup>
+    <popup v-model:show="toggleChange" prop="" :data="isActive" ref="popup"></popup>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, onMounted } from 'vue';
-import { toRaw } from "@vue/reactivity";
+import { defineComponent, reactive, ref} from 'vue';
 import { getApp } from '@/common/hooks';
 import Popup from '@/components/Popup/index.vue';
-// import a from '@/assets/images/image11.webp';
-import { Case } from '@/common/controller/case';
 export default defineComponent({
   name: "case",
   components: {
@@ -42,52 +39,32 @@ export default defineComponent({
   setup() {
     const toggleChange = ref<boolean>(false);
     const isActive = ref(false);
-    const items = ref(['T恤定制', '来图设计', '男装加工', '女装加工', '西装定制', '运动装定制']);
+    const items = ref([]);
     let activeIndex = ref(0);
     let images = reactive({
       banner: []
     });
-    // let productMessage = reactive({});
     let productMessage = ref();
-    // let itemMessage = ref()
     const popup = ref()
     const initData = async () => {
-      const data = await getApp().System.Case.initData();
+      await getApp().System.Case.initData();
     }
 
     function open(index:number){
       toggleChange.value = !toggleChange.value;
-      // itemMessage.value=image;
-      popup.value.setData(index,images.banner);
-      console.log(popup.value)
+      popup.value.setData(activeIndex.value,index);
     }
 
     function getItemImages(index:number) {
-      console.log(productMessage.value)
-      console.log(toRaw(productMessage.value))
-      // images.banner = (productMessage.value)[index].productList;
-      images.banner = toRaw(productMessage.value)[index].productList;
+      images.banner = getApp().System.Case.getItemImages(index);
       activeIndex.value = index;
     }
 
     (async () => {
       await initData()
-      getApp().System.Case.getItemImages(0);
-    })();
-
-
-
-    async function getCustomizedProductItem() {
-      await Case.getCustomizedProduct().then(res => {
-        productMessage.value = res;
-      })
-    }
-
-    onMounted(async () => {
-
-      await getCustomizedProductItem();
+      items.value=getApp().System.Case.getItemTitle();
       getItemImages(0);
-    })
+    })();
 
     return {
       images,
@@ -98,10 +75,7 @@ export default defineComponent({
       toggleChange,
       popup,
       open,
-      getCustomizedProductItem,
       getItemImages,
-      
-
     }
   }
 

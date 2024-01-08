@@ -19,7 +19,7 @@
       <div class="clothes flex flex-js-c margin-top-l">
         <template v-for="(item) in dataList">
           <div class="item margin-right-s">
-            <img :src="item.imageUrl[0]" alt="" width="100" height="80">
+            <img :src="item" alt="" width="100" height="80">
           </div>
         </template>
       </div>
@@ -34,11 +34,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { defineProps, defineEmits,onMounted, defineExpose,ref } from 'vue';
-  import { toRaw } from "@vue/reactivity";
+  import { defineProps, defineEmits, defineExpose,ref } from 'vue';
+  import { getApp } from '@/common/hooks';
   let itemData =ref({})
-  let dataList =ref([])
   let nowIndex = ref()
+  let nowItemIndex = ref()
+  let dataList = ref([])
   const props = defineProps({
     itemMessage:{
       type:Object,
@@ -59,27 +60,19 @@
     emit('update:show', false);
   }
   
-  const setData = (index:number,datalist:any) => {
-    nowIndex.value=index;
-    dataList.value=datalist
-    itemData.value=toRaw(datalist[nowIndex.value]);
-    
-    console.log(itemData.value)
-    // debugger
-    console.log(dataList.value)
+  const setData = (index: number, itemIndex: number) => {
+    nowIndex.value = index;
+    nowItemIndex.value = itemIndex;
+    itemData.value = getApp().System.Case.getItemMessage(nowIndex.value, nowItemIndex.value);
+    dataList.value = getApp().System.Case.getItemImages(index);
   }
   function nextItem(){
-    nowIndex.value=(nowIndex.value+1)%8;
-    console.log(dataList.value);
-    // debugger
-    itemData.value=toRaw(dataList.value)[nowIndex.value];
-    console.log(itemData.value);
+    nowItemIndex.value=(nowItemIndex.value+1)%8;
+    itemData.value=getApp().System.Case.getItemMessage(nowIndex.value,nowItemIndex.value);
   }
   function preItem(){
-    nowIndex.value=(nowIndex.value-1)%8;;
-    console.log(dataList.value);
-    // debugger
-    itemData.value=toRaw(dataList.value)[nowIndex.value];
+    nowItemIndex.value=(nowIndex.value-1)%8;
+    itemData.value=getApp().System.Case.getItemMessage(nowIndex.value,nowItemIndex.value);
     console.log(itemData.value);
   }
   defineExpose({

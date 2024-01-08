@@ -10,7 +10,7 @@ export class Case {
     private protectMessage=[];
     private ItemMessage={};
     private ItemImages=[];
-
+    private ItemTitle=[];
     public async initData(){
         this.protectMessage=await this.getCustomizedProduct()
     }
@@ -27,7 +27,7 @@ export class Case {
             }
         }
         this.protectMessage=res.data.rows;
-        console.log(this.protectMessage)
+        // console.log(this.protectMessage)
         return res.data.rows;
 
         function formatImg(str: string) {
@@ -38,16 +38,24 @@ export class Case {
     }
 
      public getItemImages(index:number){
-        console.log(this.protectMessage);
-        debugger
+         this.ItemImages=[];
          for (let i = 0; i < this.protectMessage.length; i++) {
              this.ItemImages.push(this.protectMessage[index].productList[i].imageUrl[0]);
          }
          return this.ItemImages;
      }
 
+    public getItemTitle(){
+        this.ItemTitle=[];
+        for (let i = 0; i < this.protectMessage.length; i++) {
+            this.ItemTitle.push(this.protectMessage[i].typeName);
+        }
+        return this.ItemTitle;
+    }
 
     public getItemMessage(index:number,itemIndex:number){
+        console.log(this.protectMessage[index]);
+        console.log((this.protectMessage[index]).productList);
         this.ItemMessage=this.protectMessage[index].productList[itemIndex];
         return this.ItemMessage;
     }
